@@ -1,5 +1,7 @@
 # Terraform GitHub Actions caching example
 
+[![Terraform cache example](https://github.com/magnetikonline/terraform-github-action-cache-example/actions/workflows/example.yaml/badge.svg)](https://github.com/magnetikonline/terraform-github-action-cache-example/actions/workflows/example.yaml)
+
 ## Summary
 
 An implementation of caching [Terraform providers](https://www.terraform.io/docs/language/providers/) via [`actions/cache`](https://github.com/actions/cache) within a workflow run in an attempt to improve `terraform init|plan|apply` execution times.
@@ -26,7 +28,7 @@ Breakdown of the key workflow steps:
 	Configuration lock file can be created/updated via the following:
 
 	```sh
-	terraform providers lock -platform=darwin_amd64 -platform=linux_amd64
+	$ terraform providers lock -platform=darwin_amd64 -platform=linux_amd64
 	```
 
 - Finally a `terraform init` is run, which sets up a trivial Terraform configuration of [`main.tf`](main.tf).
