@@ -18,7 +18,7 @@ See: [`.github/workflows/example.yaml`](.github/workflows/example.yaml)
 
 Breakdown of the key workflow steps:
 
-- Git source is fetched and Terraform setup via `actions/checkout` and [`hashicorp/setup-terraform`](https://github.com/hashicorp/setup-terraform) respectively.
+- Git source is fetched and Terraform setup via [`actions/checkout`](https://github.com/actions/checkout) and [`hashicorp/setup-terraform`](https://github.com/hashicorp/setup-terraform) respectively.
 - Terraform plugin cache is configured:
 	- By default Terraform downloads providers to each `.terraform/` directory within a configuration. By enabling a system wide cache, `terraform` downloads each provider _once_ to a central location and symlink back into each `.terraform/` directory - avoiding repeated downloads. [More details here](https://www.terraform.io/docs/cli/config/config-file.html#provider-plugin-cache).
 	- The plugin cache is set with the `plugin_cache_dir=` property within `~/.terraformrc`.
