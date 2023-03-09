@@ -29,3 +29,7 @@ jobs:
       - name: Init example Terraform configuration
         run: |
           terraform init
+          
+      - name: Terraform Format
+        id: fmt
+        run: terraform fmt -check -recursive
