@@ -12,10 +12,8 @@ jobs:
         with:
             python-version: "3.9"
       - name: Cache sqlfluff
-        id: cache-primes
         uses: actions/cache@v3
         with:
-          path: prime-numbers
-          key: ${{ runner.os }}-${{ env.SQLFLUFF_VERSION }}
+          key: ${{ runner.os }}-sqlfluff-${{ env.SQLFLUFF_VERSION }}
       - name: Install SQLFluff
         run: "pip install sqlfluff==${{ env.SQLFLUFF_VERSION }}"
