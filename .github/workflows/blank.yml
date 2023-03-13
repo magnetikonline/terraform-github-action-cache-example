@@ -15,5 +15,6 @@ jobs:
         uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-sqlfluff-${{ env.SQLFLUFF_VERSION }}
+          path: ~/.cache/sqlfluff
       - name: Install SQLFluff
         run: "pip install sqlfluff==${{ env.SQLFLUFF_VERSION }}"
