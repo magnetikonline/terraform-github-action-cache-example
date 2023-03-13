@@ -11,6 +11,10 @@ jobs:
       - uses: "actions/setup-python@v2"
         with:
             python-version: "3.9"
-            cache: 'pip' # caching pip dependencies
+      - name: Cache sqlfluff
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/sqlfluff
+          key: ${{ runner.os }}-sqlfluff-${{ env.SQLFLUFF_VERSION }}
       - name: Install SQLFluff
         run: "pip install sqlfluff==${{ env.SQLFLUFF_VERSION }}"
