@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 env:
   MODULE_PATH: '**/'
-  TF_PLUGIN_CACHE_DIR: '$HOME/.terraform.d/plugin-cache'
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
 jobs:
   main:
     name: Example
@@ -18,12 +18,12 @@ jobs:
           terraform_version: 1.3.0
       - name: Config Terraform plugin cache
         run: |
-          mkdir --parents TF_PLUGIN_CACHE_DIR
+          mkdir --parents ${{ env.TF_PLUGIN_CACHE_DIR }}
       - name: Cache Terraform
         uses: actions/cache@v3
         with:
           path: |
-            TF_PLUGIN_CACHE_DIR
+            ${{ env.TF_PLUGIN_CACHE_DIR }}
           key: ${{ runner.os }}-terraform-${{ hashfiles(format('{0}/.terraform.lock.hcl', env.MODULE_PATH)) }}
           restore-keys: |
             ${{ runner.os }}-terraform-
