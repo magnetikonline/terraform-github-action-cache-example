@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
 env:
   MODULE_PATH: '**/'
+  TF_PLUGIN_CACHE_DIR: '$HOME/.terraform.d/plugin-cache'
 jobs:
   main:
     name: Example
@@ -17,8 +18,7 @@ jobs:
           terraform_version: 1.3.0
       - name: Config Terraform plugin cache
         run: |
-          echo 'plugin_cache_dir="$HOME/.terraform.d/plugin-cache"' >~/.terraformrc
-          mkdir --parents ~/.terraform.d/plugin-cache
+          mkdir --parents TF_PLUGIN_CACHE_DIR
       - name: Cache Terraform
         uses: actions/cache@v3
         with:
