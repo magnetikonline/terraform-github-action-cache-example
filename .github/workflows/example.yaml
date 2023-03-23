@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 env:
   MODULE_PATH: '**/'
-  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-caches
 jobs:
   main:
     name: Example
