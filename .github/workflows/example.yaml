@@ -3,8 +3,8 @@ name: Terraform cache example
 on:
   workflow_dispatch:
 env:
-  MODULE_PATH: '**/'
-  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache
+  TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform.d/plugin-cache/whatever
+  
 jobs:
   main:
     name: Example
