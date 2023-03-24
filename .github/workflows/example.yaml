@@ -16,6 +16,9 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.3.0
+      - name: stup cache
+        run: mkdir --parents ${{ env.TF_PLUGIN_CACHE_DIR }}
+        
       - name: Cache Terraform
         uses: actions/cache@v3
         with:
