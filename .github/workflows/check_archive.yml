@@ -1,0 +1,36 @@
+name: Check for Archive Mode
+
+on:
+  pull_request:
+    types: [opened, reopened, edited]
+    paths:
+      - 'Hightouch/syncs/**'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Check for archive mode
+        run: |
+          set -e
+          git fetch --prune --unshallow
+          git diff --name-only HEAD $(git merge-base HEAD origin/main) | grep '^Hightouch/syncs/.*\.yaml$' | xargs grep -l 'mode:[[:space:]]*archive'
+        shell: bash
+        
+      - name: Alert on archive mode
+        uses: actions/github-script@v4
+        if: steps.check.outputs.files != ''
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const files = `${{ steps.check.outputs.files }}`.split("\n").filter(f => f !== "")
+            const prNumber = context.payload.pull_request.number
+            const owner = context.repo.owner
+            const repo = context.repo.repo
+            const message = `@${{ github.actor }} The following files have \`mode: archive\` configuration:\n\n${files.join("\n")}`
+            await github.issues.createComment({owner, repo, issue_number: prNumber, body: message})

@@ -1,0 +1,7 @@
+model: 23rser
+destination: werwe
+config:
+  mode: archive
+  type: object
+  object: werwe
+
