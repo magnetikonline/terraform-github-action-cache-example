@@ -9,7 +9,7 @@ An implementation of caching [Terraform providers](https://www.terraform.io/docs
 Why?
 
 - Providers are external to Terraform itself and require download during `terraform init` operations.
-- Common use providers can often be very large in size (e.g. the [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) at time of writing weighs in around `200MB`).
+- Common use providers can often be very large in size. For example, the [AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs) at time of writing weighs in around `200MB` uncompressed.
 - By caching these provider binaries between GitHub Action runs, we hope to have required configuration providers available to `terraform` sooner!
 
 ## Example
