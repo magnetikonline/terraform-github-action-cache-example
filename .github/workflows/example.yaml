@@ -23,9 +23,9 @@ jobs:
         with:
           path: |
             ~/.terraform.d/plugin-cache
-          key: ${{ runner.os }}-terraform-${{ hashFiles('**/.terraform.lock.hcl') }}
+          key: terraform-${{ runner.os }}-${{ hashFiles('**/.terraform.lock.hcl') }}
           restore-keys: |
-            ${{ runner.os }}-terraform-
+            terraform-${{ runner.os }}-
       - name: Init Terraform configuration
         run: |
           terraform init
